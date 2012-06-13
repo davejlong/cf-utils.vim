@@ -300,7 +300,7 @@ syn cluster	cfExpressionCluster	contains=cfFunctionName,cfScope,@cfOperatorClust
 
 " Evaluation; skip strings ( this helps with cases like nested IIf() )
 "		containedin to add to the TOP of cfOutputRegion.
-syn region	cfHashRegion	"L\=#[^#]+#" contained containedin=cfOutputRegion contains=@cfExpressionCluster,cfScriptParenError
+syn match	cfHashRegion	"L\=#[^#]\+#" contained containedin=cfOutputRegion contains=@cfExpressionCluster,cfScriptParenError
 
 " Hashmarks are significant inside cfoutput tags.
 " cfoutput tags may be nested indefinitely.
