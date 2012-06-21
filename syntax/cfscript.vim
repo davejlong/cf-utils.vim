@@ -8,7 +8,7 @@ if exists('b:current_syntex') && b:current_syntex == 'cfscript'
   finish
 endif
 
-let b:ignorecase = "true"
+syn case ignore
 
 " Comments
 syn keyword cfCommentTodo   contained  TODO FIXME XXX TBD
