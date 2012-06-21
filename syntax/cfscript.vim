@@ -22,10 +22,24 @@ syn match	  cfBraces	      "[{}\[\]]"
 syn match	  cfParens	      "[()]"
 syn keyword cfFunctionScope public private protected package
 
+" Statements
+syn keyword cfStatement     return var
+
+" Strings
+" Include Sql in string
+if exists("b:current_syntax")
+  unlet b:current_syntax
+endif
+syn include @cfSql $VIMRUNTIME/syntax/sql.vim
+
+syn region cfStringD        start=+"+ skip=+\\\\\\|\\"+ end=+"\|$+ contains=@cfSql
+syn region cfStringS        start=+'+ skip=+\\\\\\|\\"+ end=+'\|$+ contains=@cfSql
+
 " Scopes
-syn keyword cfScope         arguments variables session url form cgi
-" syn keyword cfScope         Arguments Variables Session Url Form Cgi
-" syn keyword cfScope         ARGUMENTS VARIABLES SESSION URL FORM CGI
+syn keyword cfScope         application arguments attributes caller cgi client
+syn keyword cfScope         cookie flash form request server session this
+syn keyword cfScope         thread url variables
+
 " Define default highlighting
 if version >= 508
   if version < 508
@@ -33,15 +47,23 @@ if version >= 508
   else
     command -nargs=+ HiLink hi def link <args>
   endif
+
   " Comments
   HiLink cfComment        comment
   HiLink cfLineComment    comment
   HiLink cfCommentTodo    Todo
+
   " Definitions
   HiLink cfComponent      StorageClass
   HiLink cfFunction       Function
   HiLink cfBraces         Function
   HiLink cfFunctionScope  StorageClass
+
+  " Statements
+  HiLink cfStatement      Statement
+  HiLink cfStringD        String
+  HiLink cfStringS        String
+
   " Scopes
   HiLink cfScope          Keyword
   delcommand HiLink
