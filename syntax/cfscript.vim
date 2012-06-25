@@ -43,11 +43,36 @@ syn keyword cfScope         thread url variables
 syn keyword cfCondition     if else switch case
 
 " CF Functions
-" Array functions
-syn keyword cfFunctions     arrayappend arrayavg arrayclear arraydeleteat arrayinsertat arraycontains
-syn keyword cfFunctions     arrayisdefined arrayisempty arraylen arraymax arraymin arraydelete
-syn keyword cfFunctions     arraynew arrayprepend arrayresize arrayset arraysort arrayfind
-syn keyword cfFunctions     arraysum arrayswap arraytolist isarray listtoarray arrayfindnocase
+syn keyword cfFunctions     abs acos addsoaprequestheader addsoapresponseheader ajaxlink ajaxonload
+syn keyword cfFunctions     applicationstop arrayappend arrayavg arrayclear arraycontains arraydelete
+syn keyword cfFunctions     arraydeleteat arrayfind arrayfindnocase arrayinsertat arrayisdefined
+syn keyword cfFunctions     arrayisempty arraylen arraymax arraylen arraynew arrayprepend arrayresize
+syn keyword cfFunctions     arrayset arraysort arraysum arrayswap arraytolist asc asin atn authenticatedcontext
+syn keyword cfFunctions     authenticateduser binarydecode binaryencode bitand bitmastclear bitmaskread
+syn keyword cfFunctions     bitmaskset bitnot bitor bitshln bitshrn bitxor
+syn keyword cfFunctions     cacheget cachegetallids cachegetmetadata cachegetsession cacheput cacheremove
+syn keyword cfFunctions     cachesetproperties ceiling charsetdecode charsetencode chr cjustify compare
+syn keyword cfFunctions     comparenocase cos createdate createdatatime createobject createodbcdate
+syn keyword cfFunctions     createodbcdatetime createodbctime createtime createtimespan createuuid dateadd
+syn keyword cfFunctions     datecompare dateconvert datediff dateformat datepart day dayofweek dayofweekasstring
+syn keyword cfFunctions     dayofyear daysinmonth daysinyear de decimalformat decrementvalue decrypt
+syn keyword cfFunctions     decryptbinary deleteclientvariable deserializejson directorycreate directorydelete
+syn keyword cfFunctions     directoryexists directorylist directoryrename dollarformat dotnettocftype duplicate
+syn keyword cfFunctions     encrypt encryptbinary entitydelete entityloadbyexample entityloadbypk entitymerge
+syn keyword cfFunctions     entitynew entityreload entitysave entitytoquery evaluate exp expandpath fileclose
+syn keyword cfFunctions     filecopy filedelete fileexists fileiseof filemove fileopen fileread filereadbinary
+syn keyword cfFunctions     filereadline fileseek filesetaccessmode filesetattribute filesetlastmodified
+syn keyword cfFunctions     fileskipbytes fileupload fileuploadall filewrite filewriteline find findnocase
+syn keyword cfFunctions     findoneof firstdayofmonth fix formatbasen generatesecretkey getauthuser getbasetagdata
+syn keyword cfFunctions     getbasetaglist getbasetemplatepath getclientvariableslist getcomponentmetadata
+syn keyword cfFunctions     getcontextroot getcurentemplatepath getdirectoryfrompath getencoding getexception
+syn keyword cfFunctions     getfilefrompath getfileinfo getfunctioncalledname getfunctionlist getgatewayhelper
+syn keyword cfFunctions     gethttprequestdata gethttptimestring getk2serverdoccount getk2serverdoccountlimit
+syn keyword cfFunctions     getlocale getlocaledisplayname getlocalhostip getmetadata getmetricdata getpagecontext
+syn keyword cfFunctions     getprinterinfo getprinterlist getprofilesections getprofilestring getreadableimageformats
+syn keyword cfFunctions     getsoaprequest getsoaprequestheader getsoapresponse getsoapresponseheader
+syn keyword cfFunctions     gettempdirectory gettempfile gettickcount gettimezoneinfo gettoken getuserroles
+syn keyword cfFunctions     getvfsmetadata getwriteableimageformats
 
 " Define default highlighting
 if version >= 508
