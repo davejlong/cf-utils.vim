@@ -4,9 +4,9 @@
 " License:      WTFPL
 
 " Bail out if syntax is already loaded
-if exists('b:current_syntex') && b:current_syntex == 'cfscript'
-  finish
-endif
+"if exists('b:current_syntex') && b:current_syntex == 'cfscript'
+"  finish
+"endif
 
 syn case ignore
 
