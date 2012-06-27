@@ -73,6 +73,23 @@ syn keyword cfFunctions     getprinterinfo getprinterlist getprofilesections get
 syn keyword cfFunctions     getsoaprequest getsoaprequestheader getsoapresponse getsoapresponseheader
 syn keyword cfFunctions     gettempdirectory gettempfile gettickcount gettimezoneinfo gettoken getuserroles
 syn keyword cfFunctions     getvfsmetadata getwriteableimageformats
+syn keyword cfFunctions     hash hour htmlcodeformat htmleditformat iif imageaddborder imageblur imageclearrect
+syn keyword cfFunctions     imagecopy imagecrop imagedrawarc imagedrawbeveledrect imagedrawcubiccurve imagedrawline
+syn keyword cfFunctions     imagedrawlines imagedrawoval imagedrawpoint imagedrawquadraticcurve iamgedrawrect
+syn keyword cfFunctions     imagedrawroundrect imagedrawtext imageflip imagegetblob imagegetbufferedimage imagegetexifdata
+syn keyword cfFunctions     imagegetheight imagegetiptcmetadata imagegetiptctag imagegetwidth imagegrayscale
+syn keyword cfFunctions     imageinfo imagenegative imagenew imageoverlay imagepaste imageread imagereadbase64
+syn keyword cfFunctions     imageresize imagerotate imagerotatedrawingaxis imagescaletofit imagesetantialiasing
+syn keyword cfFunctions     imagesetbackgroundcolor imagesetdrawingcolor imagesetdrawingstroke imagesetdrawingtransparency
+syn keyword cfFunctions     iamgesharpen imageshear imagesheardrawingacis imagetranslate imagetranslatedrawingaxis
+syn keyword cfFunctions     imagewrite imagewritebase64 imagexordrawingmode
+syn keyword cfFunctions     incrementvalue inputbasen insert int isarray isauthenticated isauthorized isbinary
+syn keyword cfFunctions     isboolean iscustomfunctions isdate isddx isdebugmode isdefined isimage isimagefile
+syn keyword cfFunctions     isinstancteof isipv6 isjson isk2serverabroker isk2serverdoccountexceeded isk2serveronline
+syn keyword cfFunctions     isleapyear islocalhost isnull isnumeric isnumericdate isobject ispdffile isprotected isquery
+syn keyword cfFunctions     issimplevalue issoaprequest isspreadsheetfile isspreadsheetobject isstruct isuserinanyrole
+syn keyword cfFunctions     isuserinrole isuserloggedin isvalid iswddx isxml isxmlattribute isxmldoc isxmlelem
+syn keyword cfFunctions     isxmlnode isxmlroot javacast jsstringformat
 
 " Define default highlighting
 if version >= 508
