@@ -5,27 +5,27 @@
 
 " Bail if out syntax is already loaded
 if exists('b:current_syntax') && b:current_syntax == 'cfml'
-  finish
+    finish
 endif
 
 if exists("d_noinclude_html")
-  " Define alternatives to the HTML syntax file.
+    " Define alternatives to the HTML syntax file.
 
-  " Copied from html.vim - the rules for matching a CF tag match	those for HTML/SGML.
-  " CFML syntax is more permissive when it comes to superfluous <> chars.
-  syn region	htmlString	contained start=+"+ end=+"+ contains=@htmlPreproc
-  syn region	htmlString	contained start=+'+ end=+'+ contains=@htmlPreproc
-  syn match	htmlValue	contained "=[\t ]*[^'" \t>][^ \t>]*"hs=s+1	contains=@htmlPreproc
-  " Hacked htmlTag so that it only matches cf tags and not random <> chars.
-  syn region	htmlEndTag	start=+</cf+	end=+>+ contains=htmlTagN,htmlTagError
-  syn region	htmlTag		start=+<\s*cf[^/]+	end=+>+ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,@htmlPreproc,@htmlArgCluster
-  syn match	htmlTagN	contained +<\s*[-a-zA-Z0-9]\++hs=s+1 contains=htmlTagName,@htmlTagNameCluster
-  syn match	htmlTagN	contained +</\s*[-a-zA-Z0-9]\++hs=s+2 contains=htmlTagName,@htmlTagNameCluster
-  syn match	htmlTagError	contained "[^>]<"ms=s+1
+    " Copied from html.vim - the rules for matching a CF tag match	those for HTML/SGML.
+    " CFML syntax is more permissive when it comes to superfluous <> chars.
+    syn region	htmlString	contained start=+"+ end=+"+ contains=@htmlPreproc
+    syn region	htmlString	contained start=+'+ end=+'+ contains=@htmlPreproc
+    syn match	htmlValue	contained "=[\t ]*[^'" \t>][^ \t>]*"hs=s+1	contains=@htmlPreproc
+    " Hacked htmlTag so that it only matches cf tags and not random <> chars.
+    syn region	htmlEndTag	start=+</cf+	end=+>+ contains=htmlTagN,htmlTagError
+    syn region	htmlTag		start=+<\s*cf[^/]+	end=+>+ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,@htmlPreproc,@htmlArgCluster
+    syn match	htmlTagN	contained +<\s*[-a-zA-Z0-9]\++hs=s+1 contains=htmlTagName,@htmlTagNameCluster
+    syn match	htmlTagN	contained +</\s*[-a-zA-Z0-9]\++hs=s+2 contains=htmlTagName,@htmlTagNameCluster
+    syn match	htmlTagError	contained "[^>]<"ms=s+1
 else
-  " Use all the stuff from the HTML syntax file.
-  " This means eg HTML comments are highlighted as comments, even if they include cf tags.
-  runtime! syntax/html.vim
+    " Use all the stuff from the HTML syntax file.
+    " This means eg HTML comments are highlighted as comments, even if they include cf tags.
+    runtime! syntax/html.vim
 endif
 
 syn sync	fromstart
@@ -102,7 +102,7 @@ syn keyword	cfTagName	contained cfsharepoint cfspreadsheet
 " Tag attributes.
 " XXX Not updated for ColdFusion 8/9.
 " These are becoming a headache to maintain, so might be removed.
-syn keyword	cfArg		contained abort accept access accessible action addnewline addtoken
+syn keyword	cfArg       contained abort accept access accessible action addnewline addtoken
 syn keyword	cfArg		contained agentname align appendkey appletsource application
 syn keyword	cfArg		contained applicationtimeout applicationtoken archive
 syn keyword	cfArg		contained argumentcollection arguments asciiextensionlist
@@ -183,11 +183,11 @@ syn keyword	cfArg		contained valuesdisplay var variable vertical visible vscroll
 syn keyword	cfArg		contained webservice width wmode wraptext wsdlfile xaxistitle
 syn keyword	cfArg		contained xaxistype xoffset yaxistitle yaxistype yoffset
 " ColdFusion 8
-syn keyword	cfArg		contained hide keys metainfo returnFormat secureJSON show showUDFs verifyClient 
-syn keyword	cfArg		contained implements serviceaddress
+syn keyword	cfArg       contained hide keys metainfo returnFormat secureJSON show showUDFs verifyClient 
+syn keyword	cfArg       contained implements serviceaddress
 " ColdFusion 9
-syn keyword	cfArg		contained accessors batchsize cachename cacheuse cascade catalog cfc cfserializable collectiontype
-syn keyword	cfArg		contained column constrained datatype dbdefault discriminatorcolumn discriminatorvalue
+syn keyword	cfArg       contained accessors batchsize cachename cacheuse cascade catalog cfc cfserializable collectiontype
+syn keyword	cfArg       contained column constrained datatype dbdefault discriminatorcolumn discriminatorvalue
 syn keyword cfArg       contained dynamicInsert dynamicupdate elementColumn elementtype entityname entitytype fetch fetchbatchsize fieldType fkcolumn
 syn keyword cfArg       contained foreignkeyname generated generator getter inverse inversejoincolumn joincolumn lazy length
 syn keyword cfArg       contained linktable linkcatalog linkschema mappedby mappedSuperClass
@@ -196,8 +196,8 @@ syn keyword cfArg       contained precision readonly remotingFetch rowid savemap
 syn keyword cfArg       contained selectkey sequence serializable setter singularname sqltype structkeycolumn structkeydatatype structkeytype table
 syn keyword cfArg       contained unique uniquekey unSavedValue update validateparam where 
 " ColdFusion 10
-syn keyword	cfArg		contained autoIndex consumes httpMethod indexable indexLanguage produces rest restPath wsVersion
- 
+syn keyword	cfArg       contained autoIndex consumes httpMethod indexable indexLanguage produces rest restPath wsVersion
+
 
 
 " Functions.
@@ -331,6 +331,7 @@ syn cluster	cfExpressionCluster	contains=cfFunctionName,cfScope,@cfOperatorClust
 " Evaluation; skip strings ( this helps with cases like nested IIf() )
 "		containedin to add to the TOP of cfOutputRegion.
 syn match	cfHashRegion	"L\=#[^#]\+#" contained containedin=cfOutputRegion contains=@cfExpressionCluster,cfScriptParenError
+
 " Test: Which is better?
 " syn region	cfHashRegion		start=+#+ skip=+"[^"]*"\|'[^']*'+ end=+#+ contained containedin=cfOutputRegion contains=@cfExpressionCluster,cfScriptParenError
 
@@ -391,7 +392,7 @@ syn cluster	cfmlCluster	contains=cfComment,@htmlTagNameCluster,@htmlPreproc,cfSe
 
 " cfquery = sql syntax
 if exists("b:current_syntax")
-  unlet b:current_syntax
+    unlet b:current_syntax
 endif
 syn include @cfSql $VIMRUNTIME/syntax/sql.vim
 unlet b:current_syntax
@@ -402,18 +403,18 @@ syn region	cfSqlregion	start=+<cfquery\_[^>]*>+ keepend end=+</cfquery>+me=s-1 m
 command -nargs=+ CfHiLink hi def link <args>
 
 if exists("d_noinclude_html")
-  " The default html-style highlighting copied from html.vim.
-  CfHiLink htmlTag		Function
-  CfHiLink htmlEndTag		Identifier
-  CfHiLink htmlArg		Type
-  CfHiLink htmlTagName		htmlStatement
-  CfHiLink htmlValue		String
-  CfHiLink htmlPreProc		PreProc
-  CfHiLink htmlString		String
-  CfHiLink htmlStatement	Statement
-  CfHiLink htmlValue		String
-  CfHiLink htmlTagError		htmlError
-  CfHiLink htmlError		Error
+    " The default html-style highlighting copied from html.vim.
+    CfHiLink htmlTag		Function
+    CfHiLink htmlEndTag		Identifier
+    CfHiLink htmlArg		Type
+    CfHiLink htmlTagName		htmlStatement
+    CfHiLink htmlValue		String
+    CfHiLink htmlPreProc		PreProc
+    CfHiLink htmlString		String
+    CfHiLink htmlStatement	Statement
+    CfHiLink htmlValue		String
+    CfHiLink htmlTagError		htmlError
+    CfHiLink htmlError		Error
 endif
 
 CfHiLink cfTagName		Statement
@@ -456,5 +457,5 @@ CfHiLink cfqueryTag		htmlTag
 delcommand CfHiLink
 
 if !exists('b:current_syntax')
-  let b:current_syntex = 'cfml'
+    let b:current_syntex = 'cfml'
 endif

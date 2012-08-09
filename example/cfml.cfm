@@ -38,7 +38,7 @@
     </script>
 </head>
 <body>
-       <!--- Press gg=G to test indeting --->
+       <!--- Press gg=G to test indenting --->
 
        <div id=someId class=someClass>
          <table>
