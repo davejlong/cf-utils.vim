@@ -175,13 +175,30 @@ syn keyword	cfArg		contained step stoponerror style subject suggestions
 syn keyword	cfArg		contained suppresswhitespace tablename tableowner tablequalifier
 syn keyword	cfArg		contained taglib target task template text textcolor textqualifier
 syn keyword	cfArg		contained throwonerror throwonerror throwonfailure throwontimeout
-syn keyword	cfArg		contained timeout timespan tipbgcolor tipstyle title to tooltip
+syn keyword	cfArg		contained timeout timespan tipbgcolor tipstyle title to tooltip top
 syn keyword	cfArg		contained toplevelvariable transfermode type uid unit url urlpath
 syn keyword	cfArg		contained useragent username userpassword usetimezoneinfo validate
 syn keyword	cfArg		contained validateat value valuecolumn values valuesdelimiter
 syn keyword	cfArg		contained valuesdisplay var variable vertical visible vscroll vspace
 syn keyword	cfArg		contained webservice width wmode wraptext wsdlfile xaxistitle
 syn keyword	cfArg		contained xaxistype xoffset yaxistitle yaxistype yoffset
+" ColdFusion 8
+syn keyword	cfArg		contained hide keys metainfo returnFormat secureJSON show showUDFs verifyClient 
+syn keyword	cfArg		contained implements serviceaddress
+" ColdFusion 9
+syn keyword	cfArg		contained accessors batchsize cachename cacheuse cascade catalog cfc cfserializable collectiontype
+syn keyword	cfArg		contained column constrained datatype dbdefault discriminatorcolumn discriminatorvalue
+syn keyword cfArg       contained dynamicInsert dynamicupdate elementColumn elementtype entityname entitytype fetch fetchbatchsize fieldType fkcolumn
+syn keyword cfArg       contained foreignkeyname generated generator getter inverse inversejoincolumn joincolumn lazy length
+syn keyword cfArg       contained linktable linkcatalog linkschema mappedby mappedSuperClass
+syn keyword cfArg       contained missingrowIgnored notnull optimisticLock optimisticLockgenerated orderByreadonly ormtype params persistent
+syn keyword cfArg       contained precision readonly remotingFetch rowid savemapping schema selectbeforeupdate
+syn keyword cfArg       contained selectkey sequence serializable setter singularname sqltype structkeycolumn structkeydatatype structkeytype table
+syn keyword cfArg       contained unique uniquekey unSavedValue update validateparam where 
+" ColdFusion 10
+syn keyword	cfArg		contained autoIndex consumes httpMethod indexable indexLanguage produces rest restPath wsVersion
+ 
+
 
 " Functions.
 " ColdFusion <=7:
@@ -281,15 +298,28 @@ syn keyword	cfFunctionName		contained SpreadsheetWrite Trace FileDelete FileSeek
 syn keyword	cfFunctionName		contained IsNull SpreadsheetCreateSheet SpreadsheetDeleteColumn SpreadsheetDeleteColumns SpreadsheetDeleteRow
 syn keyword	cfFunctionName		contained SpreadsheetDeleteRows SpreadsheetFormatCell TransactionCommit TransactionRollback
 syn keyword	cfFunctionName		contained TransactionSetSavePoint ThreadTerminate ThreadJoin Throw Writedump Writelog 
+"ColdFusion 10:
+syn keyword	cfFunctionName		contained ArraySlice ArrayEach ArrayFilter ArrayFindAll ArrayFindAllNoCase ArrayFindNoCase
+syn keyword	cfFunctionName		contained GetFreeSpace ImageMakeTranslucent Invoke IsClosure ListFilter LSDateTimeFormat
+syn keyword	cfFunctionName		contained CacheIdExists CacheRegionNew CacheRegionRemove CacheRemoveAll Canonicalize CacheRegionExists
+syn keyword	cfFunctionName		contained ListRemoveDuplicates onWSAuthenticate ORMIndex ORMIndexPurge ORMSearch ORMSearchOffline
+syn keyword	cfFunctionName		contained CallStackDump CallStackGet CSRFGenerateToken CSRFVerifyToken DateTimeFormat DecodeForHTML
+syn keyword	cfFunctionName		contained ReEscape RestInitApplication RemoveCachedQuery RestDeleteApplication RestSetResponse
+syn keyword	cfFunctionName		contained SessionRotate DecodeFromURL DirectoryCopy EncodeForHTML EncodeForCSS EncodeForHTMLAttribute
+syn keyword	cfFunctionName		contained EncodeForJavaScript sessionGetMetaData SessionInvalidate StructEach StructFilter WsGetAllChannels
+syn keyword	cfFunctionName		contained WsGetSubscribers EncodeForURL EncodeForXML FileUploadAll FileGetMimeType GetApplicationMetadata
+syn keyword	cfFunctionName		contained GetCPUUsage WsPublish WSSendMessage GetTotalSpace GetSystemFreeMemory GetSystemTotalMemory
+syn keyword	cfFunctionName		contained HMac ImageCreateCaptcha ImageMakeColorTransparent
+
 
 " Deprecated or obsoleted tags and functions.
 syn keyword	cfDeprecatedTag		contained cfauthenticate cfimpersonate cfgraph cfgraphdata
 syn keyword	cfDeprecatedTag		contained cfservlet cfservletparam cftextinput
 syn keyword	cfDeprecatedTag		contained cfinternaladminsecurity cfnewinternaladminsecurity
-syn keyword	cfDeprecatedFunction	contained GetK2ServerDocCount GetK2ServerDocCountLimit GetTemplatePath
+syn keyword	cfDeprecatedFunction	contained GetK2ServerDocCount GetK2ServerDocCountLimit GetMetricData GetTemplatePath
 syn keyword	cfDeprecatedFunction	contained IsK2ServerABroker IsK2ServerDocCountExceeded IsK2ServerOnline
 syn keyword	cfDeprecatedFunction	contained ParameterExists AuthenticatedContext AuthenticatedUser
-syn keyword	cfDeprecatedFunction	contained isAuthenticated isAuthorized isProtected
+syn keyword	cfDeprecatedFunction	contained isAuthenticated isAuthorized isProtected SetLocale
 
 " Add to the HTML clusters.
 syn cluster	htmlTagNameCluster	add=cfTagName,cfCustomTagName,cfDeprecatedTag
@@ -301,6 +331,10 @@ syn cluster	cfExpressionCluster	contains=cfFunctionName,cfScope,@cfOperatorClust
 " Evaluation; skip strings ( this helps with cases like nested IIf() )
 "		containedin to add to the TOP of cfOutputRegion.
 syn match	cfHashRegion	"L\=#[^#]\+#" contained containedin=cfOutputRegion contains=@cfExpressionCluster,cfScriptParenError
+" Test: Which is better?
+" syn region	cfHashRegion		start=+#+ skip=+"[^"]*"\|'[^']*'+ end=+#+ contained containedin=cfOutputRegion contains=@cfExpressionCluster,cfScriptParenError
+
+
 
 " Hashmarks are significant inside cfoutput tags.
 " cfoutput tags may be nested indefinitely.
