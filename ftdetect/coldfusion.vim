@@ -15,4 +15,4 @@ function! s:DetectCF()
 endfunction
 
 " For CFCs there needs to be a check somewhere if it is script or tag
-autocmd BufNewFile,BufRead *.cfc call s:DetectCF()
+autocmd BufNewFile,BufRead,BufEnter *.cfc call s:DetectCF()
