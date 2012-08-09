@@ -7,8 +7,10 @@ autocmd BufNewFile,BufRead *.cfm set filetype=cfml
 autocmd BufNewFile,BufRead *.cfml set filetype=cfml
 
 function! s:DetectCF()
-  if getline(1) =~ '^(component|\/\*)' " Check for component or comment on first line
+  if getline(1) =~ '^component'
     set filetype=cfscript
+  elseif getline(1) =~ '^\/\*'
+    set filetype=cfscript " handles comments on first line of CFC
   else
     set filetype=cfml
   endif

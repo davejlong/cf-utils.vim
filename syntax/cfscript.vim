@@ -12,8 +12,10 @@ syn case ignore
 
 " Comments
 syn keyword cfCommentTodo   contained TODO FIXME XXX TBD
-syn match   cfLineComment   /\/\/.*/ contains=cfCommentTodo
-syn region  cfComment       start="/\*" end="\*/" contains=cfCommentTodo
+syn match   cfJavaDoc       contained /@\(access\|returnType\|hint\)\ .\+$/
+syn match   cfLineComment   /\/\/.*/ contains=cfCommentTodo,cfJavaDoc
+syn region  cfComment       start="/\*" end="\*/" contains=cfCommentTodo,cfJavaDoc
+
 
 " Definitions
 syn keyword cfComponent     component
@@ -93,6 +95,7 @@ if version >= 508
   HiLink cfComment        comment
   HiLink cfLineComment    comment
   HiLink cfCommentTodo    Todo
+  HiLink cfJavaDoc        StorageClass
 
   " Definitions
   HiLink cfComponent      StorageClass
