@@ -12,7 +12,9 @@ syn case ignore
 
 " Comments
 syn keyword cfCommentTodo   contained TODO FIXME XXX TBD
-syn match   cfJavaDoc       contained /@\(access\|returnType\|hint\|description\)\ .\+$/
+syn match   cfJavaDoc       contained /@\(.\| \)\+$/ contains=cfJavaDocAttr,cfJavaDocVal
+syn match   cfJavaDocAttr   contained /@\([a-z]\)\+/
+syn match   cfJavaDocVal    contained / \(.\)+$/
 syn match   cfLineComment   /\/\/.*/ contains=cfCommentTodo,cfJavaDoc
 syn region  cfComment       start="/\*" end="\*/" contains=cfCommentTodo,cfJavaDoc
 
@@ -98,7 +100,9 @@ if version >= 508
   HiLink cfComment        comment
   HiLink cfLineComment    comment
   HiLink cfCommentTodo    Todo
-  HiLink cfJavaDoc        StorageClass
+  " JavaDoc syntax
+  HiLink cfJavaDocAttr    StorageClass
+  HiLink cfJavaDocVal     Function
 
   " Definitions
   HiLink cfComponent      StorageClass
