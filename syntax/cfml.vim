@@ -11,16 +11,16 @@ endif
 if exists("d_noinclude_html")
   " Define alternatives to the HTML syntax file.
 
-  " Copied from html.vim - the rules for matching a CF tag match	those for HTML/SGML.
+  " Copied from html.vim - the rules for matching a CF tag matchthose for HTML/SGML.
   " CFML syntax is more permissive when it comes to superfluous <> chars.
-  syn region	htmlString	contained start=+"+ end=+"+ contains=@htmlPreproc
-  syn region	htmlString	contained start=+'+ end=+'+ contains=@htmlPreproc
-  syn match	htmlValue	contained "=[\t ]*[^'" \t>][^ \t>]*"hs=s+1	contains=@htmlPreproc
+  syn region	htmlString	contained start=+"+ end=+"+           contains=@htmlPreproc
+  syn region	htmlString	contained start=+'+ end=+'+           contains=@htmlPreproc
+  syn match	  htmlValue   contained "=[\t ]*[^'" \t>][^ \t>]*"hs=s+1	contains=@htmlPreproc
   " Hacked htmlTag so that it only matches cf tags and not random <> chars.
-  syn region	htmlEndTag	start=+</cf+	end=+>+ contains=htmlTagN,htmlTagError
-  syn region	htmlTag		start=+<\s*cf[^/]+	end=+>+ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,@htmlPreproc,@htmlArgCluster
-  syn match	htmlTagN	contained +<\s*[-a-zA-Z0-9]\++hs=s+1 contains=htmlTagName,@htmlTagNameCluster
-  syn match	htmlTagN	contained +</\s*[-a-zA-Z0-9]\++hs=s+2 contains=htmlTagName,@htmlTagNameCluster
+  syn region	htmlEndTag	start=+</cf+	end=+>+                 contains=htmlTagN,htmlTagError
+  syn region	htmlTag		  start=+<\s*cf[^/]+	end=+>+           contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,@htmlPreproc,@htmlArgCluster
+  syn match	htmlTagN	    contained +<\s*[-a-zA-Z0-9]\++hs=s+1  contains=htmlTagName,@htmlTagNameCluster
+  syn match	htmlTagN	    contained +</\s*[-a-zA-Z0-9]\++hs=s+2 contains=htmlTagName,@htmlTagNameCluster
   syn match	htmlTagError	contained "[^>]<"ms=s+1
 else
   " Use all the stuff from the HTML syntax file.
@@ -36,7 +36,7 @@ syn case	ignore
 syn keyword	cfScope		contained cgi cffile cookie request caller this thistag
 syn keyword	cfScope		contained cfcatch variables application server session client form url local
 syn keyword	cfScope		contained arguments super cfhttp attributes error
-syn keyword	cfBool		contained yes no true false
+syn keyword	cfBool		contained yes no true false 
 
 " Operator strings.
 " ColdFusion <=7:
@@ -399,61 +399,61 @@ syn region	cfqueryTag	contained start=+<cfquery+ end=+>+ keepend contains=cfTagN
 syn region	cfSqlregion	start=+<cfquery\_[^>]*>+ keepend end=+</cfquery>+me=s-1 matchgroup=NONE contains=@cfSql,cfComment,@htmlTagNameCluster,cfqueryTag,cfHashRegion
 
 " Define the highlighting.
-command -nargs=+ CfHiLink hi def link <args>
+command -nargs=+ HiLink hi def link <args>
 
 if exists("d_noinclude_html")
   " The default html-style highlighting copied from html.vim.
-  CfHiLink htmlTag		Function
-  CfHiLink htmlEndTag		Identifier
-  CfHiLink htmlArg		Type
-  CfHiLink htmlTagName		htmlStatement
-  CfHiLink htmlValue		String
-  CfHiLink htmlPreProc		PreProc
-  CfHiLink htmlString		String
-  CfHiLink htmlStatement	Statement
-  CfHiLink htmlValue		String
-  CfHiLink htmlTagError		htmlError
-  CfHiLink htmlError		Error
+  HiLink htmlTag		Function
+  HiLink htmlEndTag		Identifier
+  HiLink htmlArg		Type
+  HiLink htmlTagName		htmlStatement
+  HiLink htmlValue		String
+  HiLink htmlPreProc		PreProc
+  HiLink htmlString		String
+  HiLink htmlStatement	Statement
+  HiLink htmlValue		String
+  HiLink htmlTagError		htmlError
+  HiLink htmlError		Error
 endif
 
-CfHiLink cfTagName		Statement
-CfHiLink cfCustomTagName	Statement
-CfHiLink cfArg			Type
-CfHiLink cfFunctionName		Function
-CfHiLink cfHashRegion		PreProc
-CfHiLink cfComment		Comment
-CfHiLink cfCommentTodo		Todo
-CfHiLink cfOperator		Operator
-CfHiLink cfOperatorMatch	Operator
-CfHiLink cfScope		Title
-CfHiLink cfBool			Constant
+HiLink cfTagName		Statement
+HiLink cfCustomTagName	Statement
+HiLink cfArg			Type
+HiLink cfFunctionName		Function
+HiLink cfHashRegion		PreProc
+HiLink cfComment		Comment
+HiLink cfCommentTodo		Todo
+HiLink cfOperator		Operator
+HiLink cfOperatorMatch	Operator
+HiLink cfScope		Title
+HiLink cfBool			Constant
 
-CfHiLink cfscriptBlock		Special
-CfHiLink cfscriptTag		htmlTag
-CfHiLink cfSetRegion		PreProc
-CfHiLink cfSetLHSRegion		htmlTag
-CfHiLink cfSetTagEnd		htmlTag
+HiLink cfscriptBlock		Special
+HiLink cfscriptTag		htmlTag
+HiLink cfSetRegion		PreProc
+HiLink cfSetLHSRegion		htmlTag
+HiLink cfSetTagEnd		htmlTag
 
-CfHiLink cfScriptLineComment	Comment
-CfHiLink cfScriptComment	Comment
-CfHiLink cfScriptStringS	String
-CfHiLink cfScriptStringD	String
-CfHiLink cfScriptNumber		cfScriptValue
-CfHiLink cfScriptConditional	Conditional
-CfHiLink cfScriptRepeat		Repeat
-CfHiLink cfScriptBranch		Conditional
-CfHiLink cfScriptSpecial	Type
-CfHiLink cfScriptStatement	Statement
-CfHiLink cfScriptBraces		Function
-CfHiLink cfScriptKeyword	Function
-CfHiLink cfScriptError		Error
-CfHiLink cfDeprecatedTag	Error
-CfHiLink cfDeprecatedFunction	Error
-CfHiLink cfScrParenError	cfScriptError
+HiLink cfScriptLineComment	Comment
+HiLink cfScriptComment	Comment
+HiLink cfScriptStringS	String
+HiLink cfScriptStringD	String
+HiLink cfScriptNumber		cfScriptValue
+HiLink cfScriptConditional	Conditional
+HiLink cfScriptRepeat		Repeat
+HiLink cfScriptBranch		Conditional
+HiLink cfScriptSpecial	Type
+HiLink cfScriptStatement	Statement
+HiLink cfScriptBraces		Function
+HiLink cfScriptKeyword	Function
+HiLink cfScriptError		Error
+HiLink cfDeprecatedTag	Error
+HiLink cfDeprecatedFunction	Error
+HiLink cfScrParenError	cfScriptError
 
-CfHiLink cfqueryTag		htmlTag
+HiLink cfqueryTag		htmlTag
 
-delcommand CfHiLink
+delcommand HiLink
 
 if !exists('b:current_syntax')
   let b:current_syntex = 'cfml'
