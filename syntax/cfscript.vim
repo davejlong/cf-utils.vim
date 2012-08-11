@@ -12,7 +12,7 @@ syn case ignore
 
 " Comments
 syn keyword cfCommentTodo   contained TODO FIXME XXX TBD
-syn match   cfJavaDoc       contained /@\(access\|returnType\|hint\)\ .\+$/
+syn match   cfJavaDoc       contained /@\(access\|returnType\|hint\|description\)\ .\+$/
 syn match   cfLineComment   /\/\/.*/ contains=cfCommentTodo,cfJavaDoc
 syn region  cfComment       start="/\*" end="\*/" contains=cfCommentTodo,cfJavaDoc
 
@@ -43,6 +43,9 @@ syn keyword cfScope         thread url variables
 
 " Conditionals
 syn keyword cfCondition     if else switch case
+syn keyword cfCondition     is gt gte lt lte not contains
+" Loops
+syn keyword cfLoop          for do while
 
 " CF Functions
 syn keyword cfFunctions     abs acos addsoaprequestheader addsoapresponseheader ajaxlink ajaxonload
@@ -118,6 +121,8 @@ if version >= 508
 
   " Conditional
   HiLink cfCondition      Conditional
+  " Loop
+  HiLink cfLoop           Conditional
 
   " CF Functions
   HiLink cfFunctions      Function
