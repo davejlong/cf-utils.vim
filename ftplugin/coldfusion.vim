@@ -11,9 +11,9 @@ if exists("b:did_ftplugin") | finish | endif
 let s:save_cpo = &cpo
 set cpo-=C
 
+let html_wrong_comments = 1
 
-
-setlocal commentstring=<!--- %s --->
+" setlocal commentstring=<!--- %s --->
 
 
 " Restore the saved compatibility options.
