@@ -183,20 +183,35 @@ syn keyword cfArg       contained valuesdisplay var variable vertical visible vs
 syn keyword cfArg       contained webservice width wmode wraptext wsdlfile xaxistitle
 syn keyword cfArg       contained xaxistype xoffset yaxistitle yaxistype yoffset
 " ColdFusion 8
-syn keyword	cfArg       contained assembly hide keys implements metainfo port protocol returnFormat
-syn keyword	cfArg       contained secure secureJSON server show showUDFs serviceaddress verifyClient
+syn keyword cfArg       contained assembly center closable collapsible cssSrc draggable headerStyle hide
+syn keyword cfArg       contained implements initCollapsed initHide initShow keys maxSize metainfo 
+syn keyword cfArg       contained minHeight minSize minWidth optional overflow padding port position protocol
+syn keyword cfArg       contained refreshOnActivate refreshOnShow resizable returnFormat
+syn keyword cfArg       contained secure secureJSON server serviceaddress show showUDFs
+syn keyword cfArg       contained splitter tabHeight tabPosition tags verifyClient
 " ColdFusion 9
-syn keyword	cfArg       contained accessors batchsize cachename cacheuse cascade catalog cfc cfserializable collectiontype
-syn keyword	cfArg       contained column constrained datatype dbdefault discriminatorcolumn discriminatorvalue
-syn keyword cfArg       contained dynamicInsert dynamicupdate elementColumn elementtype entityname entitytype fetch fetchbatchsize fieldType fkcolumn
-syn keyword cfArg       contained foreignkeyname generated generator getter inverse inversejoincolumn joincolumn lazy length
+syn keyword cfArg       contained accessors activeOnTop addButtonLabel batchsize bindOnLoad bodyStyle buttonType callbackHandler
+syn keyword cfArg       contained cachename cacheuse cascade catalog cfc cfserializable clearButtonLabel collectiontype
+syn keyword cfArg       contained column constrained datatype dbdefault deleteButtonLabel discriminatorcolumn discriminatorvalue
+syn keyword cfArg       contained dynamicInsert dynamicupdate elementColumn elementtype
+syn keyword cfArg       contained entityname entitytype extensionFilter fetch fetchbatchsize fieldType fillHeight
+syn keyword cfArg       contained fitToWindow fkcolumn
+syn keyword cfArg       contained foreignkeyname generated generator getter hideUploadButton icon
+syn keyword cfArg       contained inverse inversejoincolumn joincolumn labelCancel
+syn keyword cfArg       contained labelNo labelOk labelYes lazy length
 syn keyword cfArg       contained linktable linkcatalog linkschema mappedby mappedSuperClass
-syn keyword cfArg       contained missingrowIgnored notnull optimisticLock optimisticLockgenerated orderByreadonly ormtype params persistent
-syn keyword cfArg       contained precision readonly remotingFetch rowid savemapping schema selectbeforeupdate
-syn keyword cfArg       contained selectkey sequence serializable setter singularname sqltype structkeycolumn structkeydatatype structkeytype table
-syn keyword cfArg       contained unique uniquekey unSavedValue update validateparam where 
+syn keyword cfArg       contained maxFileSelect maxUploadSize missingrowIgnored modal multiline notnull
+syn keyword cfArg       contained optimisticLock optimisticLockgenerated orderByreadonly
+syn keyword cfArg       contained ormtype params persistent precision progressBar readonly remotingFetch
+syn keyword cfArg       contained rowid savemapping schema selectbeforeupdate
+syn keyword cfArg       contained selectkey sequence serializable setter
+syn keyword cfArg       contained singularname sqltype structkeycolumn structkeydatatype
+syn keyword cfArg       contained structkeytype table
+syn keyword cfArg       contained tabStrip titleCollapse unique uniquekey unSavedValue
+syn keyword cfArg       contained update uploadButtonLabel validateparam where x y
 " ColdFusion 10
-syn keyword	cfArg       contained autoIndex consumes httpMethod indexable indexLanguage produces rest restPath wsVersion
+syn keyword cfArg       contained autoIndex consumes httpMethod indexable
+syn keyword cfArg       contained indexLanguage produces rest restPath wsVersion
 
 
 
