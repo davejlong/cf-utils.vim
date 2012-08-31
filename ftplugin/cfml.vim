@@ -47,7 +47,7 @@ fun s:Return()
     if(tag != '' && match(getline('.'), '</'.tag.'>') > -1)
         return pumvisible() ? 
                     \ "\<space>\<bs>\<cr>\<cr>\<up>"
-                    \ : "\<cr>\<cr>\<up>"
+                    \ : "\<cr>\<cr>\<up>\d"
     else
         return "\<cr>"
     endif
@@ -86,7 +86,7 @@ fun s:CloseTag()
         let tag = s:GetCurrentTag()
         " Insert closing tag if tag is not self-closing and has not already
         " been closed
-        if tag != '' && tag !~ '\vimg|input|link|meta|br|hr|area|base|param|dd|dt|cfmessagebox'
+        if tag != '' && tag !~ '\vimg|input|link|meta|br|hr|area|base|param|dd|dt'
                     \ && !s:ClosingTag(tag)
             let line = substitute(line, '\%'.col.'c', '</'.escape(tag, '/').'>', '')
             call setline('.', line)
@@ -100,6 +100,6 @@ endf
 
 " End amirh/HTML-AutoCloseTag converted to ColdFusion 
 
-
+echo "ftplugin cfml"
 " Restore the saved compatibility options.
 let &cpo = s:save_cpo
