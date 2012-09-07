@@ -1,155 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset=utf-8>
-<title>Test CFM Script</title>
-<style>
+<!--- This is a ColdFusion Comment. Browsers do not receive it. --->
 
-#someId {
-width:960px;
-height:600px;
-}
+<cfset MyVar = var1 <!--- & var2 --->> 
+<cfoutput>#Dateformat(now() <!---, "dddd, mmmm yyyy" --->)#</cfoutput> 
 
-.someClass {
-background-color: #444444;
-background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999)); /* Safari 4+, Chrome */
-background-image: -webkit-linear-gradient(top, #444444, #999999); /* Chrome 10+, Safari 5.1+, iOS 5+ */
-background-image:    -moz-linear-gradient(top, #444444, #999999); /* Firefox 3.6-15 */
-background-image:      -o-linear-gradient(top, #444444, #999999); /* Opera 11.10+ */
-background-image:         linear-gradient(to bottom, #444444, #999999); /* Firefox 16+ */
-}
-
-#someOtherId {
-float: right;
-line-height: 1.3em;
-margin: 0;
-padding: 4px 0 0 10px;
-
-}
-
-</style>
-
-<script type="text/javascript">
-$(document).ready(function () {
-/* TODO stop id hashes from being recognized as CF */
-$("#someId, .someClass, #someOtherId").val('');
-
-});
-</script>
-</head>
-<body>
-<cfset a = 1>
-<cfset print(a + 10, 20)>
-
-<cfscript>
-
-function() {
-eetet
-arr = [1, 2, 3, 4, 5];
-str = {key1="one", key2="two", key3="three"};
-
-function print(int arg1, int arg2)
-{
-for(i = arg1; i <= arg2; i++)
-{
-if(i == 10)
-{
-writeOutput(10);
-}
-else
-{
-writeOutput(i);
-}
-}
-
-switch(arg1)
-{
-case 1:
-{
-writeOutput("case 1");
-}
-case 2:
-{
-writeOutput("case 2");
-}
-}
-
-}
-
-</cfscript>
-
-<cffunction name="foo" returntype="Any">
-<cfargument name="arg1"/>
-<cfargument name="arg2"/>
-
-<cfreturn 1>
-</cffunction>
-
-<cfset a = foo()>
-<cfcatch type="any">
-</cfcatch>
-</cftry>
-
-
-
-
-<cftry>
-<cfset foo("argument1", "argument11", "argument12", "argument13", "argument14", "argument15", 
-"argument16","argument17", "argument18")>
-<cffeed action="read" source="#source#" name="myfeed" overwrite="true"
-timeout="60" enclosuredir="#dir#">
-<cfset arrayVar = ["Array Content", "Array Content", "Array Content", "Array Content", 
-"Array Content","Array Content", "Array Content", "Array Content"]>
-<cfset structVar = {a1="struct data", a2="struct data", a3="struct data", a4="struct data", 
-a5="struct data",a6="struct data", a7="struct data"}>
-
-<cfscript>
-
-public function foo(Stirng a1, Stirng a11, Stirng a12, Stirng a13, Stirng a14, Stirng a15, 
-Stirng a16,Stirng a17, Stirng a18)
-{
-if(isDefined(a10) && isDefined(a11) && isDefined(a12) && isDefined(a13) && isDefined(a14) && isDefined(a15) 
-&& isDefined(a16) && isDefined(a17) && isDefined(a10))
-{
-writeOutput("hello");
-}
-}
-
-</cfscript>
-
-<cfif>
-This
-<cfelseif>
-That
-<cfelse>
-Those
-</cfif>
-
-<cfif
-
+<!--- disable this code 
+<!--- display error message ---> 
+<cfset errormessage1="Oops!"> 
+<cfoutput> 
+    #errormessage1# 
+</cfoutput> 
+--->
 
 <cfoutput>
-This is just plain text over here. This text should be wrapped based on maximux column width when 
-wrap option for text is selected.
+    Hello #YourName#! <br> 
 </cfoutput>
-<cfcatch type="any">
-</cfcatch>
-</cftry>
 
-<cffileupload>
 
-</cffileupload>
-<!--- Press gg=G to test indenting --->
+<cfset YourName="Bob">
 
-<div id=someId class=someClass>
-<table>
-<tr>
-<th>Test Header</th>
-</tr>
-<tr>
-<td>Test Table Cell</td>
-</tr>
-</table>
-</div>
-</body>
-</html>
+<cfprocessingdirective pageencoding="euc-jp" />
+
+<!--- Configure dynamic attribute variables. ---> 
+
+
+<cfparam name="theURL" default="http://www.adobe.com"> 
+<cfparam name="resolveURL" default="yes"> 
+
+<!--- Code that dynamically changes values for attributes can go here. ---> 
+
+<!--- Create an arguments structure using variables. ---> 
+<cfset myArgs=StructNew()> 
+<cfset myArgs.url="#theURL#"> 
+<!--- Include a user name and password only if they are available. ---> 
+<cfif IsDefined("username")> 
+    <cfset myArgs.username="#username#"> 
+</cfif> 
+<cfif IsDefined("password")>
+    <cfset myArgs.password="#password#"> 
+</cfif> 
+<cfset myArgs.resolveURL="#resolveURL#"> 
+<cfset myArgs.timeout="2"> 
+
+<!--- Use the myArgs structure to specify the cfhttp tag attributes. ---> 
+<cfhttp attributeCollection="#myArgs#"> 
+<cfoutput> 
+    #cfhttp.fileContent# 
+</cfoutput>
+
+<cfscript>
+    param name="paramname" default="value" min="minvalue" max="maxvalue" pattern="pattern" 
+</cfscript>
+
+<cfscript> 
+    qry = new Query(); 
+    qry.setDatasource("test"); 
+    qry.setSQL("delete from art where artid=62"); 
+    qry.execute(); 
+    TRANSACTION action="begin" {
+    writeoutput("Transaction in cfscript test"); 
+    TRANSACTION action="begin" { 
+    qry.setSQL("insert into art(artid, artistid, artname, description, issold, price) 
+    values ( 62, 1, 'art12', 'something', 1, 100)"); 
+    qry.execute();
+    } 
+    transactionSetSavepoint("sp01"); 
+    qry.setSQL("update art set artname='art45' where artid=62"); 
+    qry.execute(); 
+    transactionSetSavepoint("sp02"); 
+    qry.setSQL("update art set artname='art56' where artid=62"); 
+    qry.execute(); 
+    transactionrollback("sp02"); 
+    transactioncommit(); 
+    } 
+</cfscript>
+
