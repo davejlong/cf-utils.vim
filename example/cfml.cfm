@@ -1,54 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset=utf-8>
-    <title>Test CFM Script</title>
-     <style>
+<!--- This is a ColdFusion Comment. Browsers do not receive it. --->
 
-    #someId {
-        width:960px;
-        height:600px;
-    }
+<cfset MyVar = var1 <!--- & var2 --->> 
+<cfoutput>#Dateformat(now() <!---, "dddd, mmmm yyyy" --->)#</cfoutput> 
 
-    .someClass {
-      background-color: #444444;
-      background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999)); /* Safari 4+, Chrome */
-      background-image: -webkit-linear-gradient(top, #444444, #999999); /* Chrome 10+, Safari 5.1+, iOS 5+ */
-      background-image:    -moz-linear-gradient(top, #444444, #999999); /* Firefox 3.6-15 */
-      background-image:      -o-linear-gradient(top, #444444, #999999); /* Opera 11.10+ */
-      background-image:         linear-gradient(to bottom, #444444, #999999); /* Firefox 16+ */
-    }
+<!--- disable this code 
+<!--- display error message ---> 
+<cfset errormessage1="Oops!"> 
+<cfoutput> 
+    #errormessage1# 
+</cfoutput> 
+--->
 
-    #someOtherId {
-        float: right;
-        line-height: 1.3em;
-        margin: 0;
-        padding: 4px 0 0 10px;
-                
-    }
+<cfoutput>
+    Hello #YourName#! <br> 
+</cfoutput>
 
-    </style>
 
-    <script>
-        $(document).ready(function () {
-            /* TODO stop id hashes from being recognized as CF */
-                $("#someId, .someClass, #someOtherId").val('');
+<cfset YourName="Bob">
 
-        });
-    </script>
-</head>
-<body>
-       <!--- Press gg=G to test indeting --->
+<cfprocessingdirective pageencoding="euc-jp" />
 
-       <div id=someId class=someClass>
-         <table>
-    <tr>
-        <th>Test Header</th>
-    </tr>
-    <tr>
-                <td>Test Table Cell</td>
-            </tr>
-</table>
-</div>
-</body>
-</html>
+<!--- Configure dynamic attribute variables. ---> 
+
+
+<cfparam name="theURL" default="http://www.adobe.com"> 
+<cfparam name="resolveURL" default="yes"> 
+
+<!--- Code that dynamically changes values for attributes can go here. ---> 
+
+<!--- Create an arguments structure using variables. ---> 
+<cfset myArgs=StructNew()> 
+<cfset myArgs.url="#theURL#"> 
+<!--- Include a user name and password only if they are available. ---> 
+<cfif IsDefined("username")> 
+    <cfset myArgs.username="#username#"> 
+</cfif> 
+<cfif IsDefined("password")>
+    <cfset myArgs.password="#password#"> 
+</cfif> 
+<cfset myArgs.resolveURL="#resolveURL#"> 
+<cfset myArgs.timeout="2"> 
+
+<!--- Use the myArgs structure to specify the cfhttp tag attributes. ---> 
+<cfhttp attributeCollection="#myArgs#"> 
+<cfoutput> 
+    #cfhttp.fileContent# 
+</cfoutput>
+
+<cfscript>
+    param name="paramname" default="value" min="minvalue" max="maxvalue" pattern="pattern" 
+</cfscript>
+
+<cfscript> 
+    qry = new Query(); 
+    qry.setDatasource("test"); 
+    qry.setSQL("delete from art where artid=62"); 
+    qry.execute(); 
+    TRANSACTION action="begin" {
+    writeoutput("Transaction in cfscript test"); 
+    TRANSACTION action="begin" { 
+    qry.setSQL("insert into art(artid, artistid, artname, description, issold, price) 
+    values ( 62, 1, 'art12', 'something', 1, 100)"); 
+    qry.execute();
+    } 
+    transactionSetSavepoint("sp01"); 
+    qry.setSQL("update art set artname='art45' where artid=62"); 
+    qry.execute(); 
+    transactionSetSavepoint("sp02"); 
+    qry.setSQL("update art set artname='art56' where artid=62"); 
+    qry.execute(); 
+    transactionrollback("sp02"); 
+    transactioncommit(); 
+    } 
+</cfscript>
+
