@@ -14,6 +14,13 @@ component {
   public date function getCurrentTime() {
     return now();
   }
+
+
+
+
+
+
+
   /*
     I want to have as many functions as needed to test everything from the syntax
     TODO: add more code
@@ -25,4 +32,12 @@ component {
    TODO
    todo Hello World
   */
+
+
+
+
+
+
+
+
 }
