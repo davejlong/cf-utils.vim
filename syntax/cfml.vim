@@ -416,7 +416,10 @@ if exists("b:current_syntax")
     unlet b:current_syntax
 endif
 syn include @cfSql $VIMRUNTIME/syntax/sql.vim
-unlet b:current_syntax
+if exists("b:current_syntax")
+  unlet b:current_syntax
+endif
+
 syn region	cfqueryTag	contained start=+<cfquery+ end=+>+ keepend contains=cfTagName,htmlTag
 syn region	cfSqlregion	start=+<cfquery\_[^>]*>+ keepend end=+</cfquery>+me=s-1 matchgroup=NONE contains=@cfSql,cfComment,@htmlTagNameCluster,cfqueryTag,cfHashRegion
 
