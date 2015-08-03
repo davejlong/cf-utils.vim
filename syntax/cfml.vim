@@ -347,11 +347,11 @@ syn cluster	htmlTagNameCluster	add=cfTagName,cfCustomTagName,cfDeprecatedTag
 syn cluster	htmlArgCluster		add=cfArg,cfHashRegion,cfScope,cfDeprecatedArg
 syn cluster	htmlPreproc		add=cfHashRegion
 
-syn cluster	cfExpressionCluster	contains=cfFunctionName,cfScope,@cfOperatorCluster,cfScriptStringD,cfScriptStringS,cfScriptNumber,cfBool,cfComment
+syn cluster	cfExpressionCluster	contains=cfFunctionName,cfScope,@cfOperatorCluster,cfBool,cfComment
 
 " Evaluation; skip strings ( this helps with cases like nested IIf() )
 "		containedin to add to the TOP of cfOutputRegion.
-syn match	cfHashRegion	"L\=#[^#]\+#" contained containedin=cfOutputRegion contains=@cfExpressionCluster,cfScriptParenError
+syn match	cfHashRegion	"L\=#[^#]\+#" contained containedin=cfOutputRegion contains=@cfExpressionCluster,htmlString
 
 " Test: Which is better?
 " syn region	cfHashRegion		start=+#+ skip=+"[^"]*"\|'[^']*'+ end=+#+ contained containedin=cfOutputRegion contains=@cfExpressionCluster,cfScriptParenError
@@ -364,7 +364,7 @@ syn region	cfOutputRegion		matchgroup=NONE transparent start=+<cfoutput>+ end=+<
 
 " <cfset>, <cfif>, <cfelseif>, <cfreturn> are analogous to hashmarks (implicit
 " evaluation) and have 'var'
-syn region	cfSetRegion		start="<cfset\>" start="<cfreturn\>" start="<cfelseif\>" start="<cfif\>" end='>' keepend contains=@cfExpressionCluster,cfSetLHSRegion,cfSetTagEnd,cfScriptStatement
+syn region	cfSetRegion		start="<cfset\>" start="<cfreturn\>" start="<cfelseif\>" start="<cfif\>" end='>' keepend contains=@cfExpressionCluster,cfSetLHSRegion,cfSetTagEnd
 syn region	cfSetLHSRegion		contained start="<cfreturn" start="<cfelseif" start="<cfif" start="<cfset" end="." keepend contains=cfTagName,htmlTag
 syn match	cfSetTagEnd		contained '>'
 
@@ -373,39 +373,8 @@ syn region	cfComment		start='<!---' end='--->' contains=cfCommentTodo,cfComment
 syn keyword	cfCommentTodo		contained TODO FIXME XXX TBD WTF 
 
 " CFscript 
-" TODO better support for new component/function def syntax
-" TODO better support for 'new'
-" TODO highlight metadata (@ ...) inside comments.
-syn match	cfScriptLineComment	contained "\/\/.*$" contains=cfCommentTodo
-syn region	cfScriptComment		contained start="/\*"	end="\*/" contains=cfCommentTodo
-syn match	cfScriptBraces		contained "[{}]"
-syn keyword	cfScriptStatement	contained return var
-" in CF, quotes are escaped by doubling
-syn region	cfScriptStringD		contained start=+"+	skip=+\\\\\|""+	end=+"+	extend contains=@htmlPreproc,cfHashRegion
-syn region	cfScriptStringS		contained start=+'+	skip=+\\\\\|''+	end=+'+	extend contains=@htmlPreproc,cfHashRegion
-syn match	cfScriptNumber		contained "\<\d\+\>"
-syn keyword	cfScriptConditional	contained if else
-syn keyword	cfScriptRepeat		contained while for in
-syn keyword	cfScriptBranch		contained break switch case default try catch continue finally
-syn keyword	cfScriptKeyword		contained function
-" argumentCollection is a special argument to function calls
-syn keyword	cfScriptSpecial		contained argumentcollection
-" ColdFusion 9:
-syn keyword	cfScriptStatement	contained new import
-" CFscript equivalents of some tags
-syn keyword	cfScriptKeyword		contained abort component exit import include
-syn keyword	cfScriptKeyword		contained interface param pageencoding property rethrow thread transaction
-" function/component syntax
-syn keyword	cfScriptSpecial		contained required extends
-
-
-syn cluster	cfScriptCluster	contains=cfScriptParen,cfScriptLineComment,cfScriptComment,cfScriptStringD,cfScriptStringS,cfScriptFunction,cfScriptNumber,cfScriptRegexpString,cfScriptBoolean,cfScriptBraces,cfHashRegion,cfFunctionName,cfDeprecatedFunction,cfScope,@cfOperatorCluster,cfScriptConditional,cfScriptRepeat,cfScriptBranch,@cfExpressionCluster,cfScriptStatement,cfScriptSpecial,cfScriptKeyword
-
-" Errors caused by wrong parenthesis; skip strings
-syn region	cfScriptParen	contained transparent skip=+"[^"]*"\|'[^']*'+ start=+(+ end=+)+ contains=@cfScriptCluster
-syn match	cfScrParenError	contained +)+
-
-syn region	cfscriptBlock	matchgroup=NONE start="<cfscript>"	end="<\/cfscript>"me=s-1 keepend contains=@cfScriptCluster,cfscriptTag,cfScrParenError
+syn include @cfscript syntax/cfscript.vim
+syn region cfScriptBlock start="<cfscript>" end="</cfscript>" contains=@cfscript
 syn region	cfscriptTag	contained start='<cfscript' end='>' keepend contains=cfTagName,htmlTag
 
 " CFML
@@ -459,22 +428,8 @@ CfHiLink cfSetRegion		PreProc
 CfHiLink cfSetLHSRegion		htmlTag
 CfHiLink cfSetTagEnd		htmlTag
 
-CfHiLink cfScriptLineComment	Comment
-CfHiLink cfScriptComment	Comment
-CfHiLink cfScriptStringS	String
-CfHiLink cfScriptStringD	String
-CfHiLink cfScriptNumber		cfScriptValue
-CfHiLink cfScriptConditional	Conditional
-CfHiLink cfScriptRepeat		Repeat
-CfHiLink cfScriptBranch		Conditional
-CfHiLink cfScriptSpecial	Type
-CfHiLink cfScriptStatement	Statement
-CfHiLink cfScriptBraces		Function
-CfHiLink cfScriptKeyword	Function
-CfHiLink cfScriptError		Error
 CfHiLink cfDeprecatedTag	Error
 CfHiLink cfDeprecatedFunction	Error
-CfHiLink cfScrParenError	cfScriptError
 
 CfHiLink cfqueryTag		htmlTag
 
